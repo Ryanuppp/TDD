@@ -41,13 +41,12 @@ class NewVisitorTest(LiveServerTestCase):
 
         # Now a new user, Francis, comes along to the site
 
-        ## We use a new browser session to make sure that no information of
-        ## Edith's is coming through from cookies etc
+        ## We use a new browser session to make sure that no information 
+        ## of Edith's is coming through from cookies etc
         self.browser.quit()
-        self.browser = webdriver.Chorme()
+        self.browser = webdriver.Chrome()
 
-        # Francis visits the home page. There is no sign of Edith's
-        # list
+        # Francis visits the home page. There is no sign of Edith's list
         self.browser.get(self.live_server_url)
         page_text = self.browser.find_element_by_tag_name('body').text
         self.assertNotIn('Buy peacock feathers', page_text)
@@ -56,8 +55,8 @@ class NewVisitorTest(LiveServerTestCase):
         # Francis starts a new list by entering a new item, He is less
         # interesting than Edith...
         inputBox = self.browser.find_element_by_id('id_new_item')
-        inputBox = send_keys('Buy milk')
-        inputBox = send_keys(Keys.ENTER)
+        inputBox.send_keys('Buy milk')
+        inputBox.send_keys(Keys.ENTER)
         self.wait_for_row_in_list_table('1:Buy milk')
 
         # Francis get his own unique URL
