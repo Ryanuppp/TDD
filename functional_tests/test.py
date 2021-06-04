@@ -117,7 +117,16 @@ class NewVisitorTest(LiveServerTestCase):
 
         #satisfied, she goes back to sleep
         
-        
+    def test_layout_and_styling(self):
+        # Edith goes to the home page
+        self.browser.get(self.live_server_url)
+        self.browser.set_window_size(1024, 768)
+
+        # She notice the input box is nicely centered
+        inputBox = self.browser.find_element_by_id('id_new_item')
+        self.assertAlmostEqual(
+            inputBox.location['x'] + inputBox.size['width']/2, 512, delta=10
+        )
 
 
        
