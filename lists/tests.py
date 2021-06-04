@@ -8,7 +8,8 @@ from lists.views import home_page
 from lists.models import Item, List
 
 
-# Create your tests here.
+   
+
 class NewListTest(TestCase):
     def test_can_save_a_POST_request(self):
         response = self.client.post('/lists/new', data={'item_text': 'A new list item'})
@@ -20,6 +21,7 @@ class NewListTest(TestCase):
         response = self.client.post('/lists/new', data={'item_text': 'A new list item'})
         new_list = List.objects.first()
         self.assertRedirects(response, f'/lists/{new_list.id}/')
+
 class NewItemTest(TestCase):
     def test_can_save_a_POST_request_to_an_existing_list(self):
         other_list = List.objects.create()
