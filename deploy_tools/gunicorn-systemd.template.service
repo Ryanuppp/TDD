@@ -6,7 +6,7 @@ Restart=on-failure
 User=admin
 WorkingDirectory=/home/admin/sites/SITENAME/source
 ExecStart=/home/admin/sites/SITENAME/virtualenv/bin/gunicorn \         
-		--bind unix:/tmp/SITENAME.socket\
+		--bind unix:/tmp/SITENAME.socket \
         superlists.wsgi:application
 
 [Install]
